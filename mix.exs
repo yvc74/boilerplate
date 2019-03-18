@@ -42,6 +42,9 @@ defmodule Boilerplate.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:phauxth, "~> 2.1.0"},
+      {:argon2_elixir, "~> 2.0"},
+      {:bamboo, "~> 1.1"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
