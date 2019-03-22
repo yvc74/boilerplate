@@ -106,4 +106,196 @@ defmodule Boilerplate.Accounts do
     |> User.password_updated_changeset()
     |> Repo.update()
   end
+
+  alias Boilerplate.Accounts.Tenant
+
+  @doc """
+  Returns the list of tenants.
+
+  ## Examples
+
+      iex> list_tenants()
+      [%Tenant{}, ...]
+
+  """
+  def list_tenants do
+    Repo.all(Tenant)
+  end
+
+  @doc """
+  Gets a single tenant.
+
+  Raises `Ecto.NoResultsError` if the Tenant does not exist.
+
+  ## Examples
+
+      iex> get_tenant!(123)
+      %Tenant{}
+
+      iex> get_tenant!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_tenant!(id), do: Repo.get!(Tenant, id)
+
+  @doc """
+  Creates a tenant.
+
+  ## Examples
+
+      iex> create_tenant(%{field: value})
+      {:ok, %Tenant{}}
+
+      iex> create_tenant(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_tenant(attrs \\ %{}) do
+    %Tenant{}
+    |> Tenant.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a tenant.
+
+  ## Examples
+
+      iex> update_tenant(tenant, %{field: new_value})
+      {:ok, %Tenant{}}
+
+      iex> update_tenant(tenant, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_tenant(%Tenant{} = tenant, attrs) do
+    tenant
+    |> Tenant.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Tenant.
+
+  ## Examples
+
+      iex> delete_tenant(tenant)
+      {:ok, %Tenant{}}
+
+      iex> delete_tenant(tenant)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_tenant(%Tenant{} = tenant) do
+    Repo.delete(tenant)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking tenant changes.
+
+  ## Examples
+
+      iex> change_tenant(tenant)
+      %Ecto.Changeset{source: %Tenant{}}
+
+  """
+  def change_tenant(%Tenant{} = tenant) do
+    Tenant.changeset(tenant, %{})
+  end
+
+  alias Boilerplate.Accounts.TenantUser
+
+  @doc """
+  Returns the list of tenant_users.
+
+  ## Examples
+
+      iex> list_tenant_users()
+      [%TenantUser{}, ...]
+
+  """
+  def list_tenant_users do
+    Repo.all(TenantUser)
+  end
+
+  @doc """
+  Gets a single tenant_user.
+
+  Raises `Ecto.NoResultsError` if the Tenant user does not exist.
+
+  ## Examples
+
+      iex> get_tenant_user!(123)
+      %TenantUser{}
+
+      iex> get_tenant_user!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_tenant_user!(id), do: Repo.get!(TenantUser, id)
+
+  @doc """
+  Creates a tenant_user.
+
+  ## Examples
+
+      iex> create_tenant_user(%{field: value})
+      {:ok, %TenantUser{}}
+
+      iex> create_tenant_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_tenant_user(attrs \\ %{}) do
+    %TenantUser{}
+    |> TenantUser.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a tenant_user.
+
+  ## Examples
+
+      iex> update_tenant_user(tenant_user, %{field: new_value})
+      {:ok, %TenantUser{}}
+
+      iex> update_tenant_user(tenant_user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_tenant_user(%TenantUser{} = tenant_user, attrs) do
+    tenant_user
+    |> TenantUser.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a TenantUser.
+
+  ## Examples
+
+      iex> delete_tenant_user(tenant_user)
+      {:ok, %TenantUser{}}
+
+      iex> delete_tenant_user(tenant_user)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_tenant_user(%TenantUser{} = tenant_user) do
+    Repo.delete(tenant_user)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking tenant_user changes.
+
+  ## Examples
+
+      iex> change_tenant_user(tenant_user)
+      %Ecto.Changeset{source: %TenantUser{}}
+
+  """
+  def change_tenant_user(%TenantUser{} = tenant_user) do
+    TenantUser.changeset(tenant_user, %{})
+  end
 end

@@ -4,6 +4,7 @@ defmodule Boilerplate.Accounts.User do
   import Ecto.Changeset
 
   alias Boilerplate.Sessions.Session
+  alias Boilerplate.Accounts.TenantUser
 
   @type t :: %__MODULE__{
     id: integer,
@@ -16,13 +17,17 @@ defmodule Boilerplate.Accounts.User do
     updated_at: DateTime.t()
   }
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
     field :confirmed_at, :utc_datetime
     field :reset_sent_at, :utc_datetime
+
     has_many :sessions, Session, on_delete: :delete_all
+    has_many :tenant_users, TenantUser
 
     timestamps()
   end

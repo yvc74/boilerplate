@@ -16,6 +16,8 @@ defmodule Boilerplate.Sessions.Session do
     updated_at: DateTime.t()
   }
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "sessions" do
     field :expires_at, :utc_datetime
     belongs_to :user, User
