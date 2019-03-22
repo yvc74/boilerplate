@@ -18,6 +18,16 @@ config :boilerplate, BoilerplateWeb.Endpoint,
   render_errors: [view: BoilerplateWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Boilerplate.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Phauxth authentication configuration
+config :phauxth,
+  user_context: Boilerplate.Accounts,
+  crypto_module: Argon2,
+  token_module: BoilerplateWeb.Auth.Token
+
+# Mailer configuration
+config :boilerplate, BoilerplateWeb.Mailer,
+  adapter: Bamboo.LocalAdapter
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

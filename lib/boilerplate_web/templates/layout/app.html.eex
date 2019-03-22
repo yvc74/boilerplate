@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-sans">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Boilerplate · Phoenix Framework</title>
+    <title>Phauxth authentication with Phoenix</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body>
-    <%= render @view_module, @view_template, assigns %>
+  <body class="bg-blue-lightest">
+    <div class="bg-white border-b border-grey-lighter py-4">      
+      <div class="container mx-auto">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <h1><%= link "Boilerplate", to: Routes.page_path(@conn, :index), class: "no-underline text-black" %></h1>
+          </div>
+          <div>
+            <ul class="list-reset">
+              <%= if @current_user do %>
+                <li class="inline"><a href="<%= Routes.user_path(@conn, :index) %>">Users</a></li>
+                <li class="inline"><a href="<%= Routes.user_path(@conn, :show, @current_user) %>"><%= @current_user.email %></a></li>
+                <li class="inline"><%= link "Logout", to: Routes.session_path(@conn, :delete, current_session(@conn)), method: :delete %></li>
+              <% else %>
+                <li class="inline"><a href="<%= Routes.user_path(@conn, :new) %>">New user</a></li>
+                <li class="inline"><a href="<%= Routes.session_path(@conn, :new) %>">Login</a></li>
+              <% end %>              
+            </ul>
+          </div>
+        </div>        
+      </div>
+    </div>
+
+    <main role="main">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

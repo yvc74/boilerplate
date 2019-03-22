@@ -1,0 +1,25 @@
+<%= form_for @changeset, @action, [], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="mt-4">
+    <%= label f, :email, class: "text-base font-bold bg-white absolute ml-2 px-2" %>
+    <%= text_input f, :email, class: "rounded border p-2 focus:border-green mt-3 w-64" %>
+    <%= error_tag f, :email %> 
+  </div>
+
+  <div class="mt-4">
+    <%= if @action == "/users" do %>
+      <%= label f, :password, class: "text-base font-bold bg-white absolute ml-2 px-2" %>
+      <%= password_input f, :password, class: "rounded border p-2 focus:border-green mt-3 w-64" %>
+      <%= error_tag f, :password %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= submit "Signup", class: "w-64 bg-green text-white font-bold my-4 p-2 rounded" %>
+  </div>
+<% end %>
