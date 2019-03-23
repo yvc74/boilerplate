@@ -20,5 +20,10 @@ defmodule Boilerplate.Accounts.Tenant do
     tenant
     |> cast(attrs, [:name, :slug])
     |> validate_required([:name, :slug])
+    |> validate_format(:slug, slug_format())
+  end
+
+  defp slug_format do
+    ~r/^(?>[A-Za-z][A-Za-z0-9-\.]*[A-Za-z0-9])$/  
   end
 end
