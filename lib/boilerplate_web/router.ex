@@ -15,6 +15,7 @@ defmodule BoilerplateWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/app", PageController, :app
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/confirm", ConfirmController, :index
